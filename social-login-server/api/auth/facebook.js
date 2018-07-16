@@ -1,6 +1,6 @@
-var passport = require('passport')
-  , FacebookStrategy = require('passport-facebook').Strategy;
-var SocialLoginHistory = require('../models/socialLoginHistoryModel');
+var passport = require('passport'),
+    FacebookStrategy = require('passport-facebook').Strategy,
+    SocialLoginHistory = require('../models/socialLoginHistoryModel');
 
 passport.use(new FacebookStrategy({
     clientID: "140253796686078",
@@ -9,7 +9,6 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'emails', 'name']
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
     var new_user = new SocialLoginHistory(profile._json);
     new_user.save(function(err, user) {
       if (err)

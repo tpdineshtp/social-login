@@ -21,10 +21,6 @@ module.exports = function(app) {
   app.route('/file/upload')
     .post(file.upload);
 
-  app.route('/file/get_image/:name')
-    .get(file.get_image);
-
-
 	app.route('/health-check').get(function(req, res) {
     res.status(200);
     res.send('Hello World');
