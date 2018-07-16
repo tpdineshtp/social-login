@@ -8,7 +8,8 @@ export const userActions = {
     logout,
     register,
     update,
-    update_picture
+    update_picture,
+    getSocialLoginData
 };
 
 function login(username, password) {
@@ -86,9 +87,24 @@ function update(user) {
 
 function update_picture(file, name) {
     return dispatch => {
-
         userService.update_picture(file, name);
     };
 
     function failure(error) { return { type: userConstants.UPDATE_FAILURE, error } }
+}
+
+function getSocialLoginData(id){
+
+  return dispatch => {
+
+      userService.getSocialLoginData(id)
+          .then(
+              user => {
+                  dispatch(success(user));
+              },
+              error => {
+              }
+          );
+      }
+      function success(user) { return { type: userConstants.FETCH_SUCCESS, user } }
 }

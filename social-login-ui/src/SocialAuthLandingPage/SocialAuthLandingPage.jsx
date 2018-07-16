@@ -8,11 +8,15 @@ class SocialAuthLandingPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          data : null
+          data : this.props.socialUser
         };
     }
     componentWillMount() {
-        this.renderMyData();
+        const { dispatch } = this.props;
+        var params = (new URL(document.location)).searchParams;
+        var id = params.get("facebookId");
+        dispatch(userActions.getSocialLoginData(id));
+        //this.renderMyData();
     }
 
     renderMyData(){
@@ -32,14 +36,13 @@ class SocialAuthLandingPage extends React.Component {
 
 
     render() {
-      console.log(this.state.data);
         return (
             <div >
-                {this.state.data != null ?
+                {this.props.socialUser != null ?
                   <div>
-                    <h2> Welcome {this.state.data.first_name} </h2>
-                      <img src={'https://graph.facebook.com/'+this.state.data.id+'/picture?type=large&width=150&height=150'} alt="Profile Picture" style={{float: 'left'}}/>
-                      <h4 > Your email id is: <br/><b>{this.state.data.email} </b></h4>
+                    <h2> Welcome {this.props.socialUser.first_name} </h2>
+                      <img src={'https://graph.facebook.com/'+this.props.socialUser.id+'/picture?type=large&width=150&height=150'} alt="Profile Picture" style={{float: 'left'}}/>
+                      <h4 > Your email id is: <br/><b>{this.props.socialUser.email} </b></h4>
                   </div>
                 : null}
                 <Link style={{marginTop: '88px'}}to="/login" className="btn btn-link">Log out</Link>
@@ -49,7 +52,10 @@ class SocialAuthLandingPage extends React.Component {
 }
 
 function mapStateToProps(state) {
- return {}
+  const { socialUser } = state.authentication;
+  return {
+      socialUser
+  };
 }
 
 const connectedSocialAuthLandingPage = connect(mapStateToProps)(SocialAuthLandingPage);

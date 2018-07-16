@@ -7,7 +7,8 @@ export const userService = {
     logout,
     register,
     update,
-    update_picture
+    update_picture,
+    getSocialLoginData
 };
 
 function login(username, password) {
@@ -73,9 +74,19 @@ function update_picture(file, name) {
   });
 }
 
+function getSocialLoginData(id){
+const requestOptions = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+};
+
+    return fetch(`${config.apiUrl}/user/fetch/`+id, requestOptions).then(handleSocialResponse);;
+}
+
 
 function handleResponse(response) {
     return response.text().then(text => {
+
         const data = text && JSON.parse(text);
         if (response.status != 200) {
             if (response.status === 600) {
@@ -89,4 +100,15 @@ function handleResponse(response) {
         }
         return data[0];
     });
+}
+
+function handleSocialResponse(response) {
+  return response.text().then(text => {
+      const data = text && JSON.parse(text);
+      if (response.status != 200) {
+          const error = (data && data.message) || response.statusText;
+          return Promise.reject(error);
+      }
+      return data;
+  });
 }
