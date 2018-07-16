@@ -1,4 +1,5 @@
 var user = require('../controllers/userController');
+var file = require('../controllers/fileController');
 
 module.exports = function(app) {
 
@@ -16,6 +17,12 @@ module.exports = function(app) {
 
   app.route('/user/update')
     .post(user.update);
+
+  app.route('/file/upload')
+    .post(file.upload);
+
+  app.route('/file/get_image/:name')
+    .get(file.get_image);
 
 
 	app.route('/health-check').get(function(req, res) {

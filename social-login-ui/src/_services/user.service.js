@@ -1,11 +1,13 @@
 import config from 'config';
 import { authHeader } from '../_helpers';
 
+
 export const userService = {
     login,
     logout,
     register,
-    update
+    update,
+    update_picture
 };
 
 function login(username, password) {
@@ -55,6 +57,23 @@ function update(user) {
     return fetch(`${config.apiUrl}/user/update`, requestOptions).then(handleResponse);;
 }
 
+
+function update_picture(file, name) {
+  console.log(file)
+  console.log(name)
+  const data = new FormData();
+  data.append('file', file);
+  data.append('filename',name);
+
+  fetch('http://localhost:3000/file/upload', {
+    method: 'POST',
+    body: data,
+  }).then((response) => {
+      response.json().then((body) => {
+        console.log('this')
+      });
+    });
+}
 
 
 function handleResponse(response) {

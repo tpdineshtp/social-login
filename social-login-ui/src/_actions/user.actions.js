@@ -7,7 +7,8 @@ export const userActions = {
     login,
     logout,
     register,
-    update
+    update,
+    update_picture
 };
 
 function login(username, password) {
@@ -80,5 +81,23 @@ function update(user) {
     };
 
     function success(user) { return { type: userConstants.UPDATE_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.UPDATE_FAILURE, error } }
+}
+
+function update_picture(file, name) {
+    return dispatch => {
+
+        userService.update_picture(file, name)
+            .then(
+                response => {
+                    console.log(response);
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
     function failure(error) { return { type: userConstants.UPDATE_FAILURE, error } }
 }

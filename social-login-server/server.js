@@ -10,6 +10,7 @@ var session = require('express-session');
 var User = require('./api/models/userModel');
 var SocialLoginHistory = require('./api/models/socialLoginHistoryModel');
 var cors = require('cors');
+const fileUpload = require('express-fileupload');
 
 var app = express();
 
@@ -27,7 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api/controllers/images', express.static(__dirname + '/api/controllers/images'));
 app.use(session({
   secret: 's3cr3t',
   resave: true,
@@ -35,6 +36,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(fileUpload());
 
 var auth = require('./api/routes/auth');
 app.use('/auth', auth);

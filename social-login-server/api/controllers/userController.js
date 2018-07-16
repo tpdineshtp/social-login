@@ -11,6 +11,7 @@ exports.register = function(req, res) {
   newuser.password = req.body.password;
   newuser.email = req.body.email;
   newuser.isActive = false;
+  newuser.profilePic = false;
   var current_date = (new Date()).valueOf().toString();
   var random = Math.random().toString();
   var hash_val = crypto.createHash('sha1').update(current_date + random).digest('hex');

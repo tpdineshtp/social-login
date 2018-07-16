@@ -21,6 +21,9 @@ var userSchema = new Schema({
   isActive: {
     type: Boolean
   },
+  profilePic: {
+    type: Boolean
+  },
 
   Created_date: {
     type: Date,
