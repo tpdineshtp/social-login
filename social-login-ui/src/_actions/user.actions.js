@@ -18,7 +18,7 @@ function login(username, password) {
         userService.login(username, password)
             .then(
                 user => {
-                    console.log(user);
+                    //console.log(user);
                     dispatch(success(user));
                     history.push('/');
                 },
@@ -49,7 +49,7 @@ function register(user) {
                 user => {
                     dispatch(success());
                     history.push('/login');
-                    dispatch(alertActions.success('Registration successful'));
+                    dispatch(alertActions.success('Registration successful, Please verify your mail and login'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -87,16 +87,7 @@ function update(user) {
 function update_picture(file, name) {
     return dispatch => {
 
-        userService.update_picture(file, name)
-            .then(
-                response => {
-                    console.log(response);
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
-                }
-            );
+        userService.update_picture(file, name);
     };
 
     function failure(error) { return { type: userConstants.UPDATE_FAILURE, error } }

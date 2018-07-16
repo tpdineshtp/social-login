@@ -59,20 +59,18 @@ function update(user) {
 
 
 function update_picture(file, name) {
-  console.log(file)
-  console.log(name)
   const data = new FormData();
   data.append('file', file);
-  data.append('filename',name);
+  data.append('filename', name);
 
   fetch('http://localhost:3000/file/upload', {
     method: 'POST',
     body: data,
   }).then((response) => {
-      response.json().then((body) => {
-        console.log('this')
-      });
+    response.json().then((body) => {
+      console.log(body)
     });
+  });
 }
 
 

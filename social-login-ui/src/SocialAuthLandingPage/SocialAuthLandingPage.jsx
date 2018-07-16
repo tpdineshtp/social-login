@@ -36,13 +36,13 @@ class SocialAuthLandingPage extends React.Component {
         return (
             <div >
                 {this.state.data != null ?
-                  <div> <h2> Welcome {this.state.data.first_name} </h2>
-                  <img src={'https://graph.facebook.com/'+this.state.data.id+'/picture?type=large&width=150&height=150'} alt="Profile Picture" style={{float: 'left'}}/>
-                  <h4 > Your email id is: <br/><b>{this.state.data.email} </b></h4>
+                  <div>
+                    <h2> Welcome {this.state.data.first_name} </h2>
+                      <img src={'https://graph.facebook.com/'+this.state.data.id+'/picture?type=large&width=150&height=150'} alt="Profile Picture" style={{float: 'left'}}/>
+                      <h4 > Your email id is: <br/><b>{this.state.data.email} </b></h4>
                   </div>
-
-                   : null}
-                   <Link to="/login" className="btn btn-link">Log out</Link>
+                : null}
+                <Link style={{marginTop: '88px'}}to="/login" className="btn btn-link">Log out</Link>
             </div>
         );
     }
