@@ -10,3 +10,10 @@ To run server
 3. run `npm install`
 4. run `npm start`
 
+
+
+#future works
+1. Encrypt Password
+2. API Versioning
+3. Add more social platforms for login
+4. Client side validations
