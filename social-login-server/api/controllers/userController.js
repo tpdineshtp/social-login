@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     SocialLoginHistory = mongoose.model('SocialLoginHistory');
 var crypto = require('crypto');
 var mandrill = require('mandrill-api/mandrill');
-var mandrill_client = new mandrill.Mandrill('fD-HfoAUJEab-XxZb12Q6A');
+var mandrill_client = new mandrill.Mandrill('xxxxx');
 
 
 // end point to register to user

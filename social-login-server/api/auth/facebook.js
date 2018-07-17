@@ -3,8 +3,8 @@ var passport = require('passport'),
     SocialLoginHistory = require('../models/socialLoginHistoryModel');
 
 passport.use(new FacebookStrategy({
-    clientID: "140253796686078",
-    clientSecret: "0c67e0b3c80f7e24b658436a62871e28",
+    clientID: "xxxxxx",
+    clientSecret: "xxxxxxx",
     callbackURL: "http://127.0.0.1:3000/auth/facebook/callback",
     profileFields: ['id', 'emails', 'name']
   },
