@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// to store the social login details 
 var socialLoginHistorySchema = new Schema({
   id: {
     type: String

@@ -5,6 +5,7 @@ import rootReducer from '../_reducers';
 
 const loggerMiddleware = createLogger();
 
+// redux store that store state information of all components
 export const store = createStore(
     rootReducer,
     applyMiddleware(

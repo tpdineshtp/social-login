@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 
 const fileUpload = require('express-fileupload');
 
-
+// gets profile picture from client and stores on server
 exports.upload = function(req, res, next) {
   let imageFile = req.files.file;
 

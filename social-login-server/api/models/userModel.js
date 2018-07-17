@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// to store the user details
 var userSchema = new Schema({
   userName: {
     type: String

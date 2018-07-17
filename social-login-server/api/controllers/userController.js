@@ -5,6 +5,8 @@ var crypto = require('crypto');
 var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill('fD-HfoAUJEab-XxZb12Q6A');
 
+
+// end point to register to user
 exports.register = function(req, res) {
   var newuser = new User();
   newuser.userName = req.body.name;
@@ -27,6 +29,7 @@ exports.register = function(req, res) {
   });
 };
 
+// end point to login
 exports.login = function(req, res) {
   User.find({email : req.body.username, password: req.body.password}, function(err, user) {
     if (err)
@@ -46,6 +49,7 @@ exports.login = function(req, res) {
   });
 };
 
+// end point to verify email
 exports.verify = function(req, res) {
   User.findOneAndUpdate({email: req.params.email, validationHash: req.params.hash}, {$set:{isActive:true}}, {new: true}, function(err, doc){
       if(err){
@@ -61,6 +65,7 @@ exports.verify = function(req, res) {
 };
 
 
+//end point to fetch details of social login
 exports.fetch = function(req, res) {
 
   SocialLoginHistory.findOne({id: req.params.id}, {}, { sort: { 'Created_date' : -1 } }, function(err, user) {
@@ -72,7 +77,7 @@ exports.fetch = function(req, res) {
 
 };
 
-
+//end point to update user details
 exports.update = function(req, res) {
   var current_date = (new Date()).valueOf().toString();
   var random = Math.random().toString();
@@ -88,7 +93,7 @@ exports.update = function(req, res) {
 };
 
 
-
+//to send mail to user's email address to verify them
 function send_email(email, hash){
 
     var message = {

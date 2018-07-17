@@ -3,17 +3,6 @@ var router = express.Router();
 var passportFacebook = require('../auth/facebook');
 var SocialLoginHistory = require('../models/socialLoginHistoryModel');
 
-/* LOGIN ROUTER */
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Please Sign In with:' });
-});
-
-/* LOGOUT ROUTER */
-router.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
-
 /* FACEBOOK ROUTER */
 router.get('/facebook',
   passportFacebook.authenticate('facebook', { scope : ['email'] }));

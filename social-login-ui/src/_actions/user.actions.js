@@ -12,6 +12,7 @@ export const userActions = {
     getSocialLoginData
 };
 
+// action that triggered when user clicks login
 function login(username, password) {
     return dispatch => {
         dispatch(request({ username }));
@@ -41,6 +42,7 @@ function logout() {
     return { type: userConstants.LOGOUT };
 }
 
+//action that triggers when new user registers with our system
 function register(user) {
     return dispatch => {
         dispatch(request(user));
